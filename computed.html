@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Vue directives: v-html, v-show, v-if, v-else-if, v-else,v-for ,v-once-->
+    <div id="app" >
+
+        <div>{{count}}</div>
+        <p>{{getFullName}}</p><!-- not functioning as i like  -->
+        <!-- <p>{{now()}}</p> -->
+        <p>{{firstName}}</p>
+        <button @click= "increment">Increase</button>
+        <button @click= "decrement">Decrease</button>
+        <input type="text" v-model = "firstName">
+        <input type="text" v-model = "lastName">
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const {createApp, ref, reactive, computed} = Vue;
+        createApp({
+            setup(){
+                const message  ="hello";
+                let luckNum = 7; 
+                let count = ref(0)
+                let firstName  =ref("Amira");
+                let lastName  =ref("Ahmed");
+                let numbers = reactive({num:0})
+                function increment(){
+                    count.value++; 
+                }
+                function decrement(){
+                    count.value--;
+                }
+                function incrementObj(){
+                    numbers.num++; 
+                }
+                function decrementObj(){
+                    numbers.num--; 
+                }
+                // function getFullName(name){
+                //     console.log(`Hey ${name}`)
+                // }
+                const getFullName = computed((previous)=>{
+                    console.log(`previous value is : ${previous}`)
+                    if (previous == "Amira Ahmed"){
+                        console.log("IT was amira")
+                    }
+                    return firstName.value + " " + lastName.value
+                })
+                function now (){
+                    console.log(Date.now());
+                }
+                return{
+                    increment, decrement,incrementObj,decrementObj,getFullName,  count, numbers, firstName,lastName, now
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>

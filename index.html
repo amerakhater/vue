@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Vue directives: v-html, v-show, v-if, v-else-if, v-else,v-for ,v-once-->
+    <div id="app" >
+        <div>Learn vue</div>
+        <input type="text" v-model.trim = "firstName">with trim
+        <br>
+        <input type="text" v-model = "lastName"> without trim
+        <br>
+        <input type="number" v-model.number = "number">
+        <br>
+        <input type="email" v-model = "email">
+        <p>Name is {{firstName}} {{lastName}} my number is {{number}} and my email is {{email}}</p>
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const {createApp, ref} = Vue;
+        createApp({
+            setup(){
+                // reactive elements
+                let firstName=ref("");
+                let lastName=ref("");
+                let number=ref("");
+                let email=ref("");
+                console.log(firstName,email,lastName,number)
+                return{firstName,email,lastName,number
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
